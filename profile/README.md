@@ -15,18 +15,12 @@ We build in three layers, and this org is where the bottom one lives.
 
 ### Public right now
 
-**[rigscore](https://github.com/Back-Road-Creative/rigscore)** — a configuration hygiene checker
-for AI development environments. Point it at a project and it reads the files that decide what
-your agents are allowed to do — governance docs, MCP server configs, container settings,
-permissions, skill files — then returns a score out of 100 and a list of what to fix, ordered by
-how badly it would hurt. It runs entirely on your machine and makes no network calls. MIT.
-
-```bash
-npx github:Back-Road-Creative/rigscore
-```
-
-Also shipped, filed under the areas below:
-
+- **Governance and hygiene** — [rigscore](https://github.com/Back-Road-Creative/rigscore): a
+  configuration hygiene checker for AI development environments. Point it at a project and it
+  reads the files that decide what your agents are allowed to do — governance docs, MCP server
+  configs, container settings, permissions, skill files — then returns a score out of 100 and a
+  list of what to fix, ordered by how badly it would hurt. Runs entirely on your machine, no
+  network calls. MIT. `npx github:Back-Road-Creative/rigscore`
 - **Video tooling** — [keycut](https://github.com/Back-Road-Creative/keycut): lossless
   multi-range video cutting that snaps to keyframes instead of lying about it.
   [redactcam](https://github.com/Back-Road-Creative/redactcam): face and licence-plate redaction
