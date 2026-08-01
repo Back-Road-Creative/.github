@@ -25,22 +25,28 @@ how badly it would hurt. It runs entirely on your machine and makes no network c
 npx github:Back-Road-Creative/rigscore
 ```
 
+Also shipped, filed under the areas below:
+
+- **Video tooling** — [keycut](https://github.com/Back-Road-Creative/keycut): lossless
+  multi-range video cutting that snaps to keyframes instead of lying about it.
+  [redactcam](https://github.com/Back-Road-Creative/redactcam): face and licence-plate redaction
+  for video, with a second pass that proves it landed.
+- **GPS and telemetry** — [sun-track](https://github.com/Back-Road-Creative/sun-track): solar
+  position, golden-hour windows, and where a GPS track was at a given instant.
+- **Color and imaging** — [pycube-lut](https://github.com/Back-Road-Creative/pycube-lut): reads
+  and applies Adobe .cube 3D LUTs, HALD CLUTs and 1D tone curves to NumPy images.
+- **Agent tooling** — [claude-batch-runner](https://github.com/Back-Road-Creative/claude-batch-runner):
+  declarative parallel agent campaigns with schema-verified results and a cost table.
+  [agent-audit](https://github.com/Back-Road-Creative/agent-audit): audits the skills, instruction
+  files and workflows your AI agents actually read.
+
 ### More coming
 
-A batch of libraries is being carved out of our production systems right now. **None of them are
-published yet** — so this is a list of areas, not links. Each one moves up to the section above as
-it lands:
+A couple more areas are still being carved out of our production systems. **Not published yet** —
+so these are areas, not links. Each one moves up to the section above as it lands:
 
-- **Video tooling** — supervising long encodes so a stalled job fails loudly instead of hanging,
-  and privacy redaction that re-checks the rendered output to prove the blur actually landed.
-- **GPS and telemetry** — track parsing, cached geocoding, and pairing footage to the trip that
-  produced it without silently attaching the wrong one.
-- **Color and imaging** — LUT reading and application, measured color correction, and a
-  deterministic develop pipeline from raw capture to finished still.
 - **SEO scoring** — dependency-free keyword extraction, readability, and per-platform metadata
   rules.
-- **Agent tooling** — the harness the practice above runs on: merge gating that refuses on red
-  CI, run locks, and batch dispatch.
 - **Static-site security** — a hardened header and content-security-policy baseline, with a build
   step that fails when the policy did not make it into the output.
 
