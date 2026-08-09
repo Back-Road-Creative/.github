@@ -1,0 +1,9 @@
+# This repo is public too, so it holds itself to the rule it enforces elsewhere.
+name: leak-scan
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  leak-scan:
+    uses: Back-Road-Creative/.github/.github/workflows/leak-scan.yml@main
