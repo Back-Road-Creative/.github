@@ -1,0 +1,28 @@
+{
+  "allow": [
+    {
+      "rule": "machine-path",
+      "path": "README.md",
+      "match": "/home/joe",
+      "reason": "The rule table documents the two account paths this rule catches; a doc that cannot name them documents nothing."
+    },
+    {
+      "rule": "private-project",
+      "path": "README.md",
+      "match": "driftless",
+      "reason": "Explains why the lookahead ends the repo name instead of using a word boundary; the explanation needs the sibling name it once missed."
+    },
+    {
+      "rule": "workspace-convention",
+      "path": "README.md",
+      "match": "_active/",
+      "reason": "The rule table names the monorepo conventions this rule catches; same self-documentation exemption as machine-path."
+    },
+    {
+      "rule": "workspace-convention",
+      "path": "README.md",
+      "match": ".data/plans",
+      "reason": "The allowlist example must show a realistic match string, and a fake one would teach the wrong format."
+    }
+  ]
+}

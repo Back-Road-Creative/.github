@@ -1,0 +1,11 @@
+# This repo is public too, so it holds itself to the rule it enforces elsewhere.
+# The filename differs from leak-scan.yml because that name is taken here by the
+# reusable workflow this one calls.
+name: leak-scan
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  leak-scan:
+    uses: Back-Road-Creative/.github/.github/workflows/leak-scan.yml@main
