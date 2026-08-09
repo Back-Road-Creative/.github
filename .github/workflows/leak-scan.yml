@@ -1,0 +1,56 @@
+# Reusable leak scan. One source of truth for every public repo in this org.
+#
+# Callers add a four-line workflow and nothing else — no pattern list, no copy of
+# the script, and in particular no setting that names the calling repo. Twelve
+# vendored copies would drift, and the repo whose copy drifted would be the repo
+# that stopped being checked.
+#
+# Call it with:
+#   jobs:
+#     leak-scan:
+#       uses: Back-Road-Creative/.github/.github/workflows/leak-scan.yml@main
+name: leak-scan
+
+on:
+  workflow_call:
+    inputs:
+      history:
+        description: >-
+          Also scan every blob reachable from every ref. Off for the pull-request
+          gate: history cannot be changed by a pull request, so a finding there
+          would be permanently red and the gate would get switched off. Turn it on
+          for a scheduled audit.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository being scanned
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # History mode needs the objects; the worktree gate does not.
+          fetch-depth: ${{ inputs.history && '0' || '1' }}
+
+      - name: Check out the scanner
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Back-Road-Creative/.github
+          # Untracked in the scanned repo, so `git ls-files` never sees it and the
+          # scanner cannot report its own pattern list as a finding.
+          path: .leak-scan-tool
+
+      - name: Scan
+        env:
+          # Only used to raise the API rate limit. The org's public-repo listing is
+          # a public endpoint, so no extra scope is required.
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 .leak-scan-tool/scripts/leak_scan.py \
+            --repo-root . \
+            --self-name '${{ github.repository }}' \
+            ${{ inputs.history && '--history' || '' }}
